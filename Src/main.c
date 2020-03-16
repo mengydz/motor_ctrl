@@ -101,6 +101,12 @@ int main(void)
   MX_TIM1_Init();
 
   /* USER CODE BEGIN 2 */
+  HAL_TIM_Base_Start_IT(&htim1);
+  HAL_TIM_PWM_Start(&htim2,TIM_CHANNEL_2);//start channel 1
+  HAL_TIM_PWM_Start(&htim2,TIM_CHANNEL_3);//start channel 2
+  HAL_TIM_Encoder_Start(&htim3, TIM_CHANNEL_ALL);
+  HAL_TIM_Encoder_Start(&htim4, TIM_CHANNEL_ALL);
+  HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, GPIO_PIN_RESET);
 
   /* USER CODE END 2 */
 
@@ -111,7 +117,8 @@ int main(void)
   /* USER CODE END WHILE */
 
   /* USER CODE BEGIN 3 */
-
+    HAL_Delay(100);
+    HAL_GPIO_TogglePin(LED_RED_GPIO_Port, LED_RED_Pin);
   }
   /* USER CODE END 3 */
 

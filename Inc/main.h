@@ -47,6 +47,9 @@
 
 /* Private define ------------------------------------------------------------*/
 
+#define LED_RED_Pin GPIO_PIN_13
+#define LED_RED_GPIO_Port GPIOC
+
 /* ########################## Assert Selection ############################## */
 /**
   * @brief Uncomment the line below to expanse the "assert_param" macro in the 
