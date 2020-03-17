@@ -71,6 +71,7 @@ void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
                 
 
 /* USER CODE BEGIN Prototypes */
+extern int16_t encoder_left,encoder_right;//
 
 /* USER CODE END Prototypes */
 

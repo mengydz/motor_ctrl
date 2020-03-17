@@ -49,6 +49,14 @@
 
 #define LED_RED_Pin GPIO_PIN_13
 #define LED_RED_GPIO_Port GPIOC
+#define AIN2_Pin GPIO_PIN_0
+#define AIN2_GPIO_Port GPIOB
+#define AIN1_Pin GPIO_PIN_1
+#define AIN1_GPIO_Port GPIOB
+#define BIN1_Pin GPIO_PIN_4
+#define BIN1_GPIO_Port GPIOB
+#define BIN2_Pin GPIO_PIN_5
+#define BIN2_GPIO_Port GPIOB
 
 /* ########################## Assert Selection ############################## */
 /**
