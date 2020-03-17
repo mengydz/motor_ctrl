@@ -4,8 +4,8 @@
 
 PIDStruct LeftSpeedPid=
 {
-	.Proportion 	= 1.5f,
-	.Integral 		= 5.0f,
+	.Proportion 	= 1.8f,
+	.Integral 		= 10.0f,
 	.Derivative 	= 0.0f,
 	.errMaxIntegral = 0.0f,
 	.PoutLimit 		= 999.0f,
@@ -15,8 +15,8 @@ PIDStruct LeftSpeedPid=
 };
 PIDStruct RightSpeedPid=
 {
-	.Proportion 	= 1.5f,
-	.Integral 		= 5.0f,
+	.Proportion 	= 1.8f,
+	.Integral 		= 10.0f,
 	.Derivative 	= 0.0f,
 	.errMaxIntegral = 0.0f,
 	.PoutLimit 		= 999.0f,

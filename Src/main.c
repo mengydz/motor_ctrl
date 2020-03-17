@@ -49,7 +49,7 @@
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
-uint64_t cnt_ttt=0;
+
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
 
@@ -71,17 +71,17 @@ void SetLeftMotorTorque(int16_t plus) //-999<= plus <=999
   {
     HAL_GPIO_WritePin(AIN1_GPIO_Port, AIN1_Pin, GPIO_PIN_RESET);
     HAL_GPIO_WritePin(AIN2_GPIO_Port, AIN2_Pin, GPIO_PIN_SET);
-    TIM2->CCR3 = plus;
+    TIM2->CCR2 = plus;
   }else if(plus < 0)
   {
     HAL_GPIO_WritePin(AIN1_GPIO_Port, AIN1_Pin, GPIO_PIN_SET);
     HAL_GPIO_WritePin(AIN2_GPIO_Port, AIN2_Pin, GPIO_PIN_RESET);
-    TIM2->CCR3 = -plus;
+    TIM2->CCR2 = -plus;
   }else
   {
     HAL_GPIO_WritePin(AIN1_GPIO_Port, AIN1_Pin, GPIO_PIN_RESET);
     HAL_GPIO_WritePin(AIN2_GPIO_Port, AIN2_Pin, GPIO_PIN_RESET);
-    TIM2->CCR3 = 0;
+    TIM2->CCR2 = 0;
   }
 }
 
@@ -91,17 +91,17 @@ void SetRightMotorTorque(int16_t plus) //-999<= plus <=999
   {
     HAL_GPIO_WritePin(BIN1_GPIO_Port, BIN1_Pin, GPIO_PIN_RESET);
     HAL_GPIO_WritePin(BIN2_GPIO_Port, BIN2_Pin, GPIO_PIN_SET);
-    TIM2->CCR2 = plus;
+    TIM2->CCR3 = plus;
   }else if(plus < 0)
   {
     HAL_GPIO_WritePin(BIN1_GPIO_Port, BIN1_Pin, GPIO_PIN_SET);
     HAL_GPIO_WritePin(BIN2_GPIO_Port, BIN2_Pin, GPIO_PIN_RESET);
-    TIM2->CCR2 = -plus;
+    TIM2->CCR3 = -plus;
   }else
   {
     HAL_GPIO_WritePin(BIN1_GPIO_Port, BIN1_Pin, GPIO_PIN_RESET);
     HAL_GPIO_WritePin(BIN2_GPIO_Port, BIN2_Pin, GPIO_PIN_RESET);
-    TIM2->CCR2 = 0;
+    TIM2->CCR3 = 0;
   }
 }
 
@@ -158,21 +158,10 @@ int main(void)
 
   /* USER CODE BEGIN 3 */
     HAL_Delay(10);
-    cnt_ttt++;
-    if(cnt_ttt%400 > 200)
-    {
-      PIDCalc(&LeftSpeedPid,600,encoder_left,0.01f);
-      SetLeftMotorTorque(LeftSpeedPid.Output);
-      PIDCalc(&RightSpeedPid,600,encoder_right,0.01f);
-      SetRightMotorTorque(RightSpeedPid.Output);
-    }
-    if(cnt_ttt%400 <200)
-    {
-      PIDCalc(&LeftSpeedPid,-600,encoder_left,0.01f);
-      SetLeftMotorTorque(LeftSpeedPid.Output);
-      PIDCalc(&RightSpeedPid,-600,encoder_right,0.01f);
-      SetRightMotorTorque(RightSpeedPid.Output);
-    }
+    PIDCalc(&LeftSpeedPid,100,encoder_left,0.01f);
+    SetLeftMotorTorque(LeftSpeedPid.Output);
+    PIDCalc(&RightSpeedPid,100,encoder_right,0.01f);
+    SetRightMotorTorque(RightSpeedPid.Output);
     HAL_GPIO_TogglePin(LED_RED_GPIO_Port, LED_RED_Pin);
   }
   /* USER CODE END 3 */

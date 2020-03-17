@@ -387,8 +387,8 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
   if(htim->Instance == TIM1)
   {
-    encoder_left = (int16_t)(__HAL_TIM_GET_COUNTER(&htim3));//
-    encoder_right = (int16_t)(__HAL_TIM_GET_COUNTER(&htim4));//
+    encoder_right = (int16_t)(__HAL_TIM_GET_COUNTER(&htim3));//
+    encoder_left = (int16_t)(__HAL_TIM_GET_COUNTER(&htim4));//
     __HAL_TIM_SET_COUNTER(&htim3,0);
     __HAL_TIM_SET_COUNTER(&htim4,0);
   }
