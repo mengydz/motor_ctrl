@@ -46,6 +46,8 @@
 
 /* USER CODE BEGIN Includes */
 #include "PID.h"
+#include "softiic.h"
+#include "mpu6050.h"
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
@@ -139,6 +141,8 @@ int main(void)
   MX_USART1_UART_Init();
   MX_USART2_UART_Init();
   MX_TIM1_Init();
+  SoftIIC_Port_Init();
+  MPU6050_Init();
 
   /* USER CODE BEGIN 2 */
   HAL_TIM_Base_Start_IT(&htim1);
@@ -158,6 +162,9 @@ int main(void)
 
   /* USER CODE BEGIN 3 */
     HAL_Delay(10);
+		Single_ReadI2C(0x3B);
+    MPU6050_ReadValue();
+
     PIDCalc(&LeftSpeedPid,100,encoder_left,0.01f);
     SetLeftMotorTorque(LeftSpeedPid.Output);
     PIDCalc(&RightSpeedPid,100,encoder_right,0.01f);
