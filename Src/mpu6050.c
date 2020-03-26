@@ -119,12 +119,6 @@ uint8_t MPU_Read_Byte(uint8_t addr,uint8_t reg)
 void Single_WriteI2C(uint8_t REG_Address,uint8_t REG_data)
 {
     MPU_Write_Byte(MpuDevAddr,REG_Address,REG_data);
-//    uint8_t txData[2] = {REG_Address,REG_data};
-//    while(HAL_I2C_Master_Transmit(&hi2c1,MpuDevAddr,txData,2,5000) != HAL_OK)
-//    {
-//        if(HAL_I2C_GetError(&hi2c1) != HAL_I2C_ERROR_AF)
-//        {}
-//    }
 }
 //**************************************
 
@@ -132,17 +126,6 @@ void Single_WriteI2C(uint8_t REG_Address,uint8_t REG_data)
 void Single_ReadI2C(uint8_t REG_Address)
 {
 	MPU_Read_Len(MpuDevAddr,REG_Address,14,&mpu6050_buffer[0]);
-//    while(HAL_I2C_Master_Transmit(&hi2c1,MpuDevAddr,&REG_Address,1,5000) != HAL_OK)
-//    {
-//        if(HAL_I2C_GetError(&hi2c1) != HAL_I2C_ERROR_AF)
-//        {}
-//    }
-//
-//    if(HAL_I2C_Master_Receive(&hi2c1,MpuDevAddr+1,&mpu6050_buffer[0],14,10000) != HAL_OK)
-//    {
-//        if(HAL_I2C_GetError(&hi2c1) != HAL_I2C_ERROR_AF)
-//        {}
-//    }
 }
 
 int8_t MPU6050_SelfTest(void)

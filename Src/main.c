@@ -143,7 +143,7 @@ int main(void)
   MX_TIM1_Init();
   SoftIIC_Port_Init();
   MPU6050_Init();
-
+  MPU6050_SelfTest();
   /* USER CODE BEGIN 2 */
   HAL_TIM_Base_Start_IT(&htim1);
   HAL_TIM_PWM_Start(&htim2,TIM_CHANNEL_2);//start channel 1
@@ -164,10 +164,10 @@ int main(void)
     HAL_Delay(10);
 		Single_ReadI2C(0x3B);
     MPU6050_ReadValue();
-
-    PIDCalc(&LeftSpeedPid,100,encoder_left,0.01f);
+    BaseMpu.acce.x -= 60;
+    PIDCalc(&LeftSpeedPid,BaseMpu.acce.x*0.3f-0.05f*BaseMpu.gyro.y,encoder_left,0.01f);
     SetLeftMotorTorque(LeftSpeedPid.Output);
-    PIDCalc(&RightSpeedPid,100,encoder_right,0.01f);
+    PIDCalc(&RightSpeedPid,BaseMpu.acce.x*0.3f-0.05f*BaseMpu.gyro.y,encoder_right,0.01f);
     SetRightMotorTorque(RightSpeedPid.Output);
     HAL_GPIO_TogglePin(LED_RED_GPIO_Port, LED_RED_Pin);
   }
